@@ -26,7 +26,20 @@ INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prer
 INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prerequisite_id) VALUES ( 'Capitulo 2', 'Continuação', 2, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fpxhere.com%2Fen%2Fphoto%2F1443423&psig=AOvVaw3l918gu7wFQqFSXSW_0Vlr&ust=1636991612584000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJDz-pGbmPQCFQAAAAAdAAAAABAD', 1, 1);
 INSERT INTO tb_section (title, description, position, img_Uri, resource_id, prerequisite_id) VALUES ( 'Capitulo 3', 'Fim da trilha', 3, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fpxhere.com%2Fen%2Fphoto%2F1443423&psig=AOvVaw3l918gu7wFQqFSXSW_0Vlr&ust=1636991612584000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJDz-pGbmPQCFQAAAAAdAAAAABAD', 1, 2); 
 
-INSERT INTO tb_enrollment(user_id, offer_id, enroll_Moment, refund_Moment, available, only_Update) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2020-11-20T13:00:00Z', null, true, false);
-INSERT INTO tb_enrollment(user_id, offer_id, enroll_Moment, refund_Moment, available, only_Update) VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2020-11-20T13:00:00Z', null, true, false);
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_Moment, refund_Moment, available, only_Update) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2020-11-20T13:00:00Z', null, true, false);
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_Moment, refund_Moment, available, only_Update) VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2020-11-20T13:00:00Z', null, true, false);
 
+INSERT INTO tb_lesson (title, position, section_id) VALUES ('Aula 1 / Capítulo 1', 1, 1);
+INSERT INTO tb_content (text_Content, video_Uri, id) VALUES ('Material de apoio : abc', 'https://www.youtube.com/watch?v=IY3BxQJ0BxI', 1);
 
+INSERT INTO tb_lesson (title, position, section_id) VALUES ('Aula 2 / Capítulo 1', 2, 1);
+INSERT INTO tb_content (text_Content, video_Uri, id) VALUES ('', 'https://www.youtube.com/watch?v=IY3BxQJ0BxI', 2);
+
+INSERT INTO tb_lesson (title, position, section_id) VALUES ('Aula 3 / Capítulo 1', 3, 1);
+INSERT INTO tb_content (text_Content, video_Uri, id) VALUES ('', 'https://www.youtube.com/watch?v=IY3BxQJ0BxI', 3);
+
+INSERT INTO tb_lesson (title, position, section_id) VALUES ('Tarefa 1 / Capítulo 1', 4, 1);
+INSERT INTO tb_task (id, description, question_count, approval_count, weight, due_date) VALUES (4, 'Fazer um trabalho legal', 5, 4, 1.0, TIMESTAMP WITH TIME ZONE '2020-11-25T13:00:00Z');
+
+INSERT INTO tb_lessons_done (lesson_id, user_id, offer_id) VALUES (1, 1, 1);
+INSERT INTO tb_lessons_done (lesson_id, user_id, offer_id) VALUES (2, 1, 1);
