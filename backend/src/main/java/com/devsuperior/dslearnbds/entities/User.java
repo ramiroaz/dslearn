@@ -44,15 +44,13 @@ public class User implements Serializable {
 	}
 	
 
-	public User(Long id, String name, String email, String password, Set<Role> roles,
-			List<Notification> notifications) {
+	public User(Long id, String name, String email, String password) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.roles = roles;
-		this.notifications = notifications;
+
 	}
 
 	public Long getId() {
