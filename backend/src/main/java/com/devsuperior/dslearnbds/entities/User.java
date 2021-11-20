@@ -149,5 +149,15 @@ public class User implements UserDetails ,Serializable {
 	public boolean isEnabled() {
 		return true;  //por enquanto
 	}
+	
+	// valida se o usuário tem o Role informado como parâmetro
+	public boolean hasRole(String roleName) {
+		for (Role role : roles) {
+			if (role.getAuthority().equals(roleName)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
