@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -48,6 +49,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Autowired
 	private JwtTokenEnhancer tokenEnhancer;
 	
+	@Autowired
+	private UserDetailsService userDetailService;
+	
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
@@ -60,8 +64,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		.withClient(clientId)    							//nome da aplicação
 		.secret(passwordEncoder.encode(clientSecret))		//senha da aplicação
 		.scopes("read","write")
-		.authorizedGrantTypes("password")					//padrão de oauth
-		.accessTokenValiditySeconds(jwtDuration);			//duração do token em segundos
+		.authorizedGrantTypes("password","refresh_token")	//padrão de oauth
+		.accessTokenValiditySeconds(jwtDuration)			//duração do token em segundos
+		.refreshTokenValiditySeconds(jwtDuration);			//duração do refresh token
 	}
 
 	@Override
@@ -74,7 +79,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		endpoints.authenticationManager(authenticationManager)
 			.tokenStore(tokenStore)
 			.accessTokenConverter(accessTokenConverter)
-			.tokenEnhancer(chain);
+			.tokenEnhancer(chain)
+			.userDetailsService(userDetailService);
 	}
 
 	
